@@ -1,0 +1,12 @@
+<view class="list-container">
+  <!-- 列表 -->
+  <scroll-view scroll-y enable-back-to-top>
+    <view class="category-list" wx:for="{{lists}}" wx:key="id" wx:for-item="photoItem">
+      <view class="category-item" data-info="{{photoItem}}" bindtap='tappedPhotoItem'>
+        
+        <text>{{photoItem.content}}</text>
+        
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,46 @@
+/**index.wxss**/
+.container {
+  padding: 0px;
+}
+
+.category-list {
+  width: 100%;
+}
+
+.category-item {
+  width: 100%;
+  height: 320px;
+  box-sizing: border-box;
+  padding: 10px 10px 10px 10px;
+  background-color: #eaeaea;
+}
+
+.list-text { 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.list-text .alias {
+  padding-top: 5px;
+  color: #666; 
+  font-size: 16px;
+}
+
+.list-text .name {
+  color: #999; 
+  font-size: 13px;
+}
+
+.thumb-Image {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.thumb-container {
+  width: 100%;
+  height: 265px;
+  padding-top: 5px;
+}
