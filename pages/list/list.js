@@ -105,23 +105,49 @@ Page({
   },
 
   // 保存图片到本地
-  save_cover: function() {
-
+  save_cover: function(data) {
+    let url = data.currentTarget.dataset.info.cover_hd
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            wx.showToast({
+              title: '保存成功',
+            })
+          },
+          fail(res) {
+            wx.showToast({
+              title: '保存失败',
+            })
+          }
+        })
+      }
+    })
   },
 
   // 全屏预览图片
-  preview_cover: function() {
-
+  preview_cover: function(data) {
+    let url = data.currentTarget.dataset.info.cover_hd
+    wx.previewImage({
+      urls: [url],
+    })
   },
 
   // 分享图片
-  share_cover: function() {
+  share_cover: function (data) {
 
   },
 
   // 展示位置
-  located_cover:function() {
-
-  }
+  located_cover: function (data) {
+    let res = data.currentTarget.dataset.info
+    wx.openLocation({
+      latitude: res.latitude,
+      longitude: res.longitude,
+      scale: 8,      
+    })
+  },
 
 })
