@@ -2,11 +2,25 @@
   <!-- 列表 -->
   <scroll-view scroll-y enable-back-to-top>
     <view class="category-list" wx:for="{{lists}}" wx:key="id" wx:for-item="photoItem">
-      <view class="category-item" data-info="{{photoItem}}" bindtap='tappedPhotoItem'>
-        
-        <text>{{photoItem.content}}</text>
-        
+      <!-- 图片栏 -->
+      <view class="category-item" data-info="{{photoItem}}" bindtap='tappedPhotoItem'>        
+        <view class="cover-container">
+          <image class="cover-Image" src="{{photoItem.cover}}" mode="aspectFill"></image>
+        </view>
       </view>
+      <!-- 工具栏 -->
+      <view class="expose_container" wx:if="{{expose_guid==photoItem.guid}}">        
+        <view class='tool_view'>
+          <view class='tool_button' bindtap="save_cover">保存</view>
+          <view class='tool_button' bindtap="preview_cover">预览</view>
+          <view class='tool_button' bindtap="share_cover">分享</view>
+          <view class='tool_button' bindtap="located_cover">位置</view>
+        </view>
+        <view class="text_view">
+          <text class="expose_text">{{photoItem.content}}</text>
+        </view>        
+      </view>
+
     </view>
   </scroll-view>
 </view>

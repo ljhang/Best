@@ -10,7 +10,8 @@ Page({
   data: {
     alias: "",
     currentPage: 1,
-    lists: []
+    lists: [],
+    expose_guid: 0
   },
 
   /**
@@ -72,7 +73,7 @@ Page({
     let that = this
 
     that.setData({
-      currentPage: that.data.currentPage
+      currentPage: that.data.currentPage + 1
     })
 
     wx.request({
@@ -94,5 +95,33 @@ Page({
    */
   tappedPhotoItem: function(info) {
     console.log(info)
+    
+    var that = this;
+    let tapped_guid = info.currentTarget.dataset.info.guid    
+    var expose_guid = that.data.expose_guid;    
+    that.setData({
+      expose_guid: (tapped_guid == expose_guid ? 0 : tapped_guid)
+    })
   },
+
+  // 保存图片到本地
+  save_cover: function() {
+
+  },
+
+  // 全屏预览图片
+  preview_cover: function() {
+
+  },
+
+  // 分享图片
+  share_cover: function() {
+
+  },
+
+  // 展示位置
+  located_cover:function() {
+
+  }
+
 })
