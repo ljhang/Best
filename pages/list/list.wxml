@@ -13,7 +13,6 @@
         <view class='tool_view'>
           <view class='tool_button' data-info="{{photoItem}}" bindtap="save_cover">保存</view>
           <view class='tool_button' data-info="{{photoItem}}" bindtap="preview_cover">预览</view>
-          <view class='tool_button' data-info="{{photoItem}}" bindtap="share_cover">分享</view>
           <view class='tool_button' data-info="{{photoItem}}" bindtap="located_cover">位置</view>
         </view>
         <view class="text_view">

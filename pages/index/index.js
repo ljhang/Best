@@ -19,12 +19,17 @@ Page({
       },
       success: function (res) {
         that.setData({
-          categories: res.data
+          categories: res.data.filter(that.isNotHonored)
         })
       }
     })
   },
   
+  // 过滤推荐栏目
+  isNotHonored: function (dict) {
+    return dict['title'] != 'Honored'
+  },
+
   // 跳转到目录详情
   tappedCategoryList: function(info) {
     let alias = "alias=" + info.currentTarget.dataset.info.alias

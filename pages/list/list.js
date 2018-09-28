@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-
+    
     that.setData({
       alias: options.alias
     })
@@ -27,19 +27,7 @@ Page({
     wx.setNavigationBarTitle({
       title: options.navTitle,
     })
-
-    wx.request({
-      url: util.domain + '/api/list/' + that.data.alias + '/zh-hans?' + util.getParameter(that.data.currentPage),
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        that.setData({
-          lists: res.data
-        })
-      }
-    })
+    that.dataService()
   },
 
   /**
@@ -47,23 +35,12 @@ Page({
    */
   onPullDownRefresh: function () {    
     let that = this
-
+    
     that.setData({
       currentPage: 1
     })
-
-    wx.request({
-      url: util.domain + '/api/list/' + that.data.alias + '/zh-hans?' + util.getParameter(that.data.currentPage),
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        that.setData({
-          lists: res.data
-        })
-      }
-    })
+    
+    that.dataService()
   },
 
   /**
@@ -72,24 +49,38 @@ Page({
   onReachBottom: function () {
     let that = this
 
-    that.setData({
-      currentPage: that.data.currentPage + 1
-    })
+    that.dataService()
+  },
+
+  dataService: function() {
+    let that = this
+    var page = that.data.currentPage
+    if (page == 0) return
 
     wx.request({
-      url: util.domain + '/api/list/' + that.data.alias + '/zh-hans?' + util.getParameter(that.data.currentPage),
+      url: util.domain + '/api/list/' + that.data.alias + '/zh-hans?' + util.getParameter(page),
       method: 'GET',
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        that.setData({
-          lists: that.data.lists.concat(res.data)
+        let last = res.data[res.data.length-1]
+        var data = res.data
+        var next_page = 0
+        if (last.cat == 'more') {
+          next_page = last.guid
+          data.pop()          
+        }
+        let final_data = page > 1 ? that.data.lists.concat(data) : data
+        console.log('next page -' + next_page + '- list count -' + final_data.length)
+        that.setData({ 
+          currentPage: next_page,       
+          lists: final_data
         })
       }
     })
   },
-
+ 
   /**
    * 点击查看图片详情
    */
@@ -133,11 +124,6 @@ Page({
     wx.previewImage({
       urls: [url],
     })
-  },
-
-  // 分享图片
-  share_cover: function (data) {
-
   },
 
   // 展示位置
