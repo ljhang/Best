@@ -19,7 +19,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    
     that.setData({
       alias: options.alias
     })
@@ -35,11 +34,9 @@ Page({
    */
   onPullDownRefresh: function () {    
     let that = this
-    
     that.setData({
       currentPage: 1
     })
-    
     that.dataService()
   },
 

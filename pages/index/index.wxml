@@ -8,11 +8,9 @@
           <text class="alias">{{caterogy.title}}</text>
           <text class="name">{{caterogy.name}}</text>
         </view>
-
         <view class="thumb-container">
           <image class="thumb-Image" src="{{caterogy.thumbs[0].cover}}" mode="aspectFill"></image>
         </view>
-        
       </view>
     </view>
   </scroll-view>

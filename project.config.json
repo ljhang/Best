@@ -11,7 +11,7 @@
 		"newFeature": true,
 		"nodeModules": true
 	},
-	"compileType": "miniprogram",
+	"compileType": "search",
 	"libVersion": "2.0.4",
 	"appid": "wx14ef5850fed36cd8",
 	"projectname": "Best",
@@ -19,6 +19,8 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
